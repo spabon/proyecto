@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+ # before_filter get_users
+  
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -72,4 +74,10 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:content, :user_id)
     end
+    
+    #private 
+    #def get_users
+   #    @users = User.all.map {|user| [user.name, user.id] }
+   # end   
+    
 end
