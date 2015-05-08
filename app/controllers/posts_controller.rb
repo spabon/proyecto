@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
- # before_filter get_users
+ before_filter :get_users
   
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+ before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    @users = User.all.map {|user| [user.name, user.id] }
+    #@users = User.all.map {|user| [user.name, user.id] }
   end
 
   # GET /posts/1/edit
@@ -75,9 +75,9 @@ class PostsController < ApplicationController
       params.require(:post).permit(:content, :user_id)
     end
     
-    #private 
-    #def get_users
-   #    @users = User.all.map {|user| [user.name, user.id] }
-   # end   
+    private 
+    def get_users
+       @users = User.all.map {|user| [user.name, user.id] }
+    end   
     
 end
